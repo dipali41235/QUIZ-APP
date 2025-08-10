@@ -1,9 +1,9 @@
-/* Dark Funky Plum Quiz Theme */
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1a1020; /* Deep plum base */
+    background-color: #1a1020; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,3 +97,4 @@ li:hover {
     background-color: #00f5d4; /* Aqua hover */
     color: #1a1020;
 }
+
