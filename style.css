@@ -1,133 +1,99 @@
-/* Radial dark background with subtle code rain overlay */
+/* Dark Funky Plum Quiz Theme */
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: radial-gradient(circle at center, #1c1f26, #0e1116);
-    color: #f0f0f0;
+    background-color: #1a1020; /* Deep plum base */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
-    position: relative;
 }
 
-/* Overlay fake code rain effect */
-body::before {
-    content: "01 10 11 00 10 01 11 10 00 11 10 01";
-    font-family: monospace;
-    font-size: 14px;
-    line-height: 20px;
-    color: rgba(0,255,100,0.08);
-    white-space: pre;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    transform: rotate(-20deg);
-    animation: scrollCode 15s linear infinite;
-}
-
-@keyframes scrollCode {
-    0% { transform: translateY(0) rotate(-20deg); }
-    100% { transform: translateY(-50%) rotate(-20deg); }
-}
-
-/* Quiz box */
 .quiz-container {
-    background: rgba(20, 24, 33, 0.9);
-    padding: 25px 35px;
-    border-radius: 15px;
-    width: 360px;
-    box-shadow: 0 0 20px rgba(0, 255, 150, 0.2);
-    backdrop-filter: blur(4px);
-    z-index: 1;
+    background-color: #24122b; /* Slightly lighter plum */
+    border-radius: 16px;
+    padding: 25px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65);
+    animation: popup 0.4s ease;
 }
 
-/* Title */
+@keyframes popup {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
 h1 {
     text-align: center;
-    color: #7fffd4;
-    text-shadow: 0 0 5px #00ff99;
+    color: #a9ff68; /* Neon lime */
+    margin-bottom: 20px;
 }
 
-/* Question text */
 #question {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 15px;
-    color: #e0e0e0;
+    color: #e9e6f0; /* Soft lavender-white */
 }
 
-/* Choices with muted neon tones */
-#choices {
+ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
-#choices li {
-    background: rgba(255,255,255,0.05);
-    padding: 10px 15px;
+li {
+    background-color: #32213a; /* Muted plum-gray */
     margin: 8px 0;
+    padding: 12px;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    border: 1px solid transparent;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    color: #f5f5f5;
 }
 
-#choices li:nth-child(1) { border-color: #00ffaa55; }
-#choices li:nth-child(2) { border-color: #ff00aa55; }
-#choices li:nth-child(3) { border-color: #ffaa0055; }
-#choices li:nth-child(4) { border-color: #00aaff55; }
-
-#choices li:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 8px rgba(0, 255, 150, 0.5);
+li:hover {
+    background-color: #00f5d4; /* Aqua hover */
+    transform: scale(1.03);
 }
 
-/* Info bar like terminal */
 .info-bar {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
-    font-family: monospace;
+    margin-top: 20px;
     font-size: 0.9rem;
-    color: #7fffd4;
+    color: #ccc;
 }
 
-/* Progress bar in cyber green */
 #progress {
-    background: #333;
-    border-radius: 8px;
-    height: 8px;
-    margin-top: 15px;
+    background-color: #3d2d4a;
+    border-radius: 6px;
     overflow: hidden;
+    height: 8px;
+    margin-top: 10px;
 }
 
 #progress-bar {
-    background: linear-gradient(90deg, #00ff99, #00ffaa);
+    background-color: #00f5d4; /* Aqua progress */
     height: 100%;
-    width: 0;
-    transition: width 0.3s;
+    width: 0%;
+    transition: width 0.3s ease;
 }
 
-/* Restart button in glowing green */
 #restart-btn {
-    background: #00ff99;
-    color: #0e1116;
+    background-color: #a9ff68; /* Neon lime button */
+    color: #1a1020;
     border: none;
-    padding: 10px 20px;
-    margin-top: 15px;
+    padding: 10px 18px;
+    margin-top: 20px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 #restart-btn:hover {
-    background: #00ffaa;
-    box-shadow: 0 0 10px #00ffaa;
+    background-color: #00f5d4; /* Aqua hover */
+    color: #1a1020;
 }
