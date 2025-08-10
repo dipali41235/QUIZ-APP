@@ -11,7 +11,7 @@ body {
 }
 
 .quiz-container {
-    background-color: #24122b; /* Slightly lighter plum */
+    background-color: #24122b; 
     border-radius: 16px;
     padding: 25px;
     max-width: 450px;
@@ -27,14 +27,14 @@ body {
 
 h1 {
     text-align: center;
-    color: #a9ff68; /* Neon lime */
+    color: #a9ff68; 
     margin-bottom: 20px;
 }
 
 #question {
     font-size: 1.1rem;
     margin-bottom: 15px;
-    color: #e9e6f0; /* Soft lavender-white */
+    color: #e9e6f0; 
 }
 
 ul {
@@ -43,7 +43,7 @@ ul {
 }
 
 li {
-    background-color: #32213a; /* Muted plum-gray */
+    background-color: #32213a; 
     margin: 8px 0;
     padding: 12px;
     border-radius: 8px;
@@ -53,7 +53,7 @@ li {
 }
 
 li:hover {
-    background-color: #00f5d4; /* Aqua hover */
+    background-color: #00f5d4; 
     transform: scale(1.03);
 }
 
@@ -74,14 +74,14 @@ li:hover {
 }
 
 #progress-bar {
-    background-color: #00f5d4; /* Aqua progress */
+    background-color: #00f5d4; 
     height: 100%;
     width: 0%;
     transition: width 0.3s ease;
 }
 
 #restart-btn {
-    background-color: #a9ff68; /* Neon lime button */
+    background-color: #a9ff68; 
     color: #1a1020;
     border: none;
     padding: 10px 18px;
@@ -97,4 +97,5 @@ li:hover {
     background-color: #00f5d4; /* Aqua hover */
     color: #1a1020;
 }
+
 
