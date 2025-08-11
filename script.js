@@ -41,9 +41,19 @@ const restartFinalBtn = document.getElementById('restart-final-btn');
 const shareBtn = document.getElementById('share-btn');
 const finalScoreEl = document.getElementById('final-score');
 
-let shuffledQuestions, currentQuestionIndex, score, streak, timer;
+let shuffledQuestions, currentQuestionIndex, score, streak, timer, playerName = "";
 
+// Start button click
 startBtn.addEventListener('click', () => {
+    const nameInput = document.getElementById('player-name');
+    const nameValue = nameInput.value.trim();
+    
+    if (nameValue === "") {
+        alert("Please enter your name before starting!");
+        return;
+    }
+
+    playerName = nameValue;
     welcomeScreen.style.display = 'none';
     quizScreen.style.display = 'block';
     startQuiz();
@@ -57,7 +67,7 @@ restartFinalBtn?.addEventListener('click', () => {
 });
 
 shareBtn?.addEventListener('click', () => {
-    const shareText = `I scored ${score} points in the Coding Quiz Challenge! Can you beat me?`;
+    const shareText = `${playerName} scored ${score} points in the Coding Quiz Challenge! Can you beat them?`;
     if (navigator.share) {
         navigator.share({ title: "Coding Quiz Challenge", text: shareText });
     } else {
@@ -101,7 +111,7 @@ function showQuestion() {
 function resetState() {
     clearInterval(timer);
     choicesEl.innerHTML = '';
-    timerEl.style.color = '#ccc'; // Reset timer color
+    timerEl.style.color = '#ccc';
 }
 
 function selectAnswer(index) {
@@ -121,7 +131,7 @@ function selectAnswer(index) {
 }
 
 function updateScore() {
-    scoreEl.textContent = `Score: ${score}`;
+    scoreEl.textContent = `${playerName}'s Score: ${score}`;
 }
 
 function startTimer() {
@@ -132,7 +142,6 @@ function startTimer() {
         timeLeft--;
         timerEl.textContent = `Time left: ${timeLeft}s`;
 
-        // Warn user when time is low
         if (timeLeft <= 5) {
             timerEl.style.color = '#ff6b6b';
         }
@@ -154,5 +163,5 @@ function updateProgress() {
 function endQuiz() {
     quizScreen.style.display = 'none';
     resultScreen.style.display = 'block';
-    finalScoreEl.textContent = `Your Score: ${score}`;
+    finalScoreEl.textContent = `${playerName}, your final score is: ${score}`;
 }
