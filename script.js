@@ -1,5 +1,5 @@
 const questions = [
-     { question: "What does HTML stand for?", choices: ["Hyper Trainer Marking Language", "HyperText Markup Language", "HyperText Marketing Language", "Hyper Transfer Markup Level"], answer: 1 },
+    { question: "What does HTML stand for?", choices: ["Hyper Trainer Marking Language", "HyperText Markup Language", "HyperText Marketing Language", "Hyper Transfer Markup Level"], answer: 1 },
     { question: "Which symbol is used for single-line comments in JavaScript?", choices: ["//", "/*", "#", "<!-- -->"], answer: 0 },
     { question: "Which company developed Java?", choices: ["Microsoft", "Oracle", "Sun Microsystems", "IBM"], answer: 2 },
     { question: "What does CSS stand for?", choices: ["Cascading Style Sheets", "Creative Style Sheets", "Computer Style Sheets", "Colorful Style Syntax"], answer: 0 },
@@ -24,13 +24,47 @@ const questions = [
     { question: "In Git, which command creates a new branch?", choices: ["git branch", "git create", "git new", "git branch-new"], answer: 0 }
 ];
 
-let shuffledQuestions, currentQuestionIndex, score, streak, timer;
+// DOM elements
+const welcomeScreen = document.getElementById('welcome-screen');
+const quizScreen = document.getElementById('quiz-screen');
+const resultScreen = document.getElementById('result-screen');
+
 const questionEl = document.getElementById('question');
 const choicesEl = document.getElementById('choices');
 const scoreEl = document.getElementById('score');
 const timerEl = document.getElementById('timer');
 const progressBar = document.getElementById('progress-bar');
+
+const startBtn = document.getElementById('start-btn');
 const restartBtn = document.getElementById('restart-btn');
+const restartFinalBtn = document.getElementById('restart-final-btn');
+const shareBtn = document.getElementById('share-btn');
+const finalScoreEl = document.getElementById('final-score');
+
+let shuffledQuestions, currentQuestionIndex, score, streak, timer;
+
+startBtn.addEventListener('click', () => {
+    welcomeScreen.style.display = 'none';
+    quizScreen.style.display = 'block';
+    startQuiz();
+});
+
+restartBtn.addEventListener('click', startQuiz);
+restartFinalBtn?.addEventListener('click', () => {
+    resultScreen.style.display = 'none';
+    quizScreen.style.display = 'block';
+    startQuiz();
+});
+
+shareBtn?.addEventListener('click', () => {
+    const shareText = `I scored ${score} points in the Coding Quiz Challenge! Can you beat me?`;
+    if (navigator.share) {
+        navigator.share({ title: "Coding Quiz Challenge", text: shareText });
+    } else {
+        navigator.clipboard.writeText(shareText);
+        alert("Score copied to clipboard! Share it with your friends.");
+    }
+});
 
 function startQuiz() {
     shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
@@ -44,18 +78,22 @@ function startQuiz() {
 
 function showQuestion() {
     resetState();
+
     if (currentQuestionIndex >= shuffledQuestions.length) {
         endQuiz();
         return;
     }
+
     const currentQuestion = shuffledQuestions[currentQuestionIndex];
     questionEl.textContent = currentQuestion.question;
+
     currentQuestion.choices.forEach((choice, index) => {
         const li = document.createElement('li');
         li.textContent = choice;
         li.addEventListener('click', () => selectAnswer(index));
         choicesEl.appendChild(li);
     });
+
     startTimer();
     updateProgress();
 }
@@ -63,10 +101,12 @@ function showQuestion() {
 function resetState() {
     clearInterval(timer);
     choicesEl.innerHTML = '';
+    timerEl.style.color = '#ccc'; // Reset timer color
 }
 
 function selectAnswer(index) {
     const correct = shuffledQuestions[currentQuestionIndex].answer === index;
+
     if (correct) {
         streak++;
         score += 10 + (streak > 1 ? streak * 2 : 0);
@@ -74,6 +114,7 @@ function selectAnswer(index) {
         streak = 0;
         score -= 5;
     }
+
     updateScore();
     currentQuestionIndex++;
     showQuestion();
@@ -86,9 +127,16 @@ function updateScore() {
 function startTimer() {
     let timeLeft = 15;
     timerEl.textContent = `Time left: ${timeLeft}s`;
+
     timer = setInterval(() => {
         timeLeft--;
         timerEl.textContent = `Time left: ${timeLeft}s`;
+
+        // Warn user when time is low
+        if (timeLeft <= 5) {
+            timerEl.style.color = '#ff6b6b';
+        }
+
         if (timeLeft <= 0) {
             clearInterval(timer);
             streak = 0;
@@ -104,13 +152,7 @@ function updateProgress() {
 }
 
 function endQuiz() {
-    questionEl.textContent = `Quiz Over! Final Score: ${score}`;
-    choicesEl.innerHTML = '';
-    timerEl.textContent = '';
-    restartBtn.style.display = 'inline-block';
+    quizScreen.style.display = 'none';
+    resultScreen.style.display = 'block';
+    finalScoreEl.textContent = `Your Score: ${score}`;
 }
-
-restartBtn.addEventListener('click', startQuiz);
-
-// Start quiz on load
-startQuiz();
