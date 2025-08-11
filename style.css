@@ -1,23 +1,24 @@
-
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1a1020; 
+    background: radial-gradient(circle at top, #24122b, #1a1020 70%);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: #f5f5f5;
 }
 
 .quiz-container {
-    background-color: #24122b; 
+    background-color: rgba(36, 18, 43, 0.95);
     border-radius: 16px;
     padding: 25px;
     max-width: 450px;
     width: 100%;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65);
     animation: popup 0.4s ease;
+    text-align: center;
 }
 
 @keyframes popup {
@@ -26,34 +27,49 @@ body {
 }
 
 h1 {
-    text-align: center;
-    color: #a9ff68; 
+    color: #a9ff68;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+p {
+    font-size: 0.95rem;
+    color: #ccc;
     margin-bottom: 20px;
 }
 
 #question {
     font-size: 1.1rem;
     margin-bottom: 15px;
-    color: #e9e6f0; 
+    color: #e9e6f0;
+    animation: fade-in 0.4s ease;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 li {
-    background-color: #32213a; 
+    background-color: #32213a;
     margin: 8px 0;
     padding: 12px;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
     color: #f5f5f5;
+    text-align: left;
 }
 
 li:hover {
-    background-color: #00f5d4; 
+    background-color: #00f5d4;
+    color: #1a1020;
     transform: scale(1.03);
 }
 
@@ -74,15 +90,13 @@ li:hover {
 }
 
 #progress-bar {
-    background-color: #00f5d4; 
+    background: linear-gradient(90deg, #00f5d4, #a9ff68);
     height: 100%;
     width: 0%;
     transition: width 0.3s ease;
 }
 
-#restart-btn {
-    background-color: #a9ff68; 
-    color: #1a1020;
+button {
     border: none;
     padding: 10px 18px;
     margin-top: 20px;
@@ -93,10 +107,40 @@ li:hover {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-#restart-btn:hover {
-    background-color: #00f5d4; 
+#start-btn {
+    background-color: #00f5d4;
     color: #1a1020;
 }
 
+#start-btn:hover {
+    background-color: #a9ff68;
+}
 
+#restart-btn, #restart-final-btn {
+    background-color: #a9ff68;
+    color: #1a1020;
+}
 
+#restart-btn:hover, #restart-final-btn:hover {
+    background-color: #00f5d4;
+}
+
+#share-btn {
+    background-color: #5e4ae3;
+    color: #fff;
+}
+
+#share-btn:hover {
+    background-color: #7f6df3;
+}
+
+.result-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.fade-in {
+    animation: fade-in 0.4s ease;
+}
