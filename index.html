@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="quiz-container">
-        <h1>Coding Quiz Challenge</h1>
+
+    <!-- Welcome Screen -->
+    <div class="quiz-container" id="welcome-screen">
+        <h1>🚀 Coding Quiz Challenge</h1>
+        <p>Test your coding knowledge! You have <strong>15 seconds</strong> for each question.</p>
+        <button id="start-btn">Start Quiz</button>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div class="quiz-container" id="quiz-screen" style="display:none;">
         <div id="quiz">
-            <div id="question">Loading question...</div>
-            <ul id="choices"></ul>
+            <div id="question" class="fade-in">Loading question...</div>
+            <ul id="choices" class="choices-list"></ul>
             <div class="info-bar">
                 <span id="score">Score: 0</span>
                 <span id="timer">Time left: 15s</span>
@@ -22,6 +30,17 @@
         </div>
         <button id="restart-btn" style="display:none;">Restart Quiz</button>
     </div>
+
+    <!-- Result Screen -->
+    <div class="quiz-container" id="result-screen" style="display:none;">
+        <h2>Quiz Complete! 🎉</h2>
+        <p id="final-score">Your Score: 0</p>
+        <div class="result-actions">
+            <button id="restart-final-btn">Play Again</button>
+            <button id="share-btn">Share Score</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
