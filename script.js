@@ -43,7 +43,7 @@ const finalScoreEl = document.getElementById('final-score');
 
 let shuffledQuestions, currentQuestionIndex, score, streak, timer, playerName = "";
 
-// Start button click
+
 startBtn.addEventListener('click', () => {
     const nameInput = document.getElementById('player-name');
     const nameValue = nameInput.value.trim();
@@ -165,3 +165,4 @@ function endQuiz() {
     resultScreen.style.display = 'block';
     finalScoreEl.textContent = `${playerName}, your final score is: ${score}`;
 }
+
