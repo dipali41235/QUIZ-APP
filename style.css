@@ -37,7 +37,7 @@ p {
     color: #ccc;
     margin-bottom: 20px;
 }
-
+//QUESTIONS
 #question {
     font-size: 1.1rem;
     margin-bottom: 15px;
@@ -144,3 +144,4 @@ button {
 .fade-in {
     animation: fade-in 0.4s ease;
 }
+
